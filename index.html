@@ -8,24 +8,20 @@
     <link rel="stylesheet" href="app.css">
     <title>Table Tennis Tournament</title>
 </head>
-<body>
-    <section class="section">
-        <div class="container">
-            <div class="title is-3">Welcome to the 2022 Table Tennis World Championships</div>
-            <div class="serviceChoice">
-                <button id="btnPlayer1" class="button is-rounded is-info">Player One chooses HEADs</button>
-                <button id="btnPlayer2" class="button is-rounded is-info">Player Two chooses HEADs</button>
-                <div id="tossOutcome"></div>
-            </div>
+<body class="container is-widescreen">
+    <h1>Welcome to the Table Tennis World Championships</h1>
+    <div class="scoreboard"><hr>
+        <div class="p1-games-section">Player One Games: <span id="p1-games"></span></div>
+        <div class="p1-points-section">Player One Points: <span id="p1-points"></span></div>
+        <div class="p2-games-section">Player Two Games: <span id="p2-games"></span></div>
+        <div class="p2-points-section">Player Two Points: <span id="p2-points"></span></div><br>
+        <div class="service-player-section">Service is with Player: <span id="service-player"></span></div>
+    </div>
 
-<div class="playerControls">
-    <button id="btnPlayer1Bat" class="button is-rounded is-principal">Player One</button>
-    <button id="btnPlayer2Bat" class="button is-rounded is-principal">Player Two</button>   
-</div>
-
-
-        </div>
-      </section>
+    <div class="game-table"><hr>
+        <button class="button is-rounded" id="btn-playerOne">Player One</button>
+        <button class="button is-rounded" id="btn-playerTwo">Player Two</button>
+    </div>
     <!-- Javascript -->
     <script src="app.js"></script>
 </body>
