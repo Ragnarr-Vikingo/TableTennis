@@ -12,7 +12,7 @@ const btnPlayerTwo = document.querySelector( '#btn-playerTwo' );
 let p1PointsScore = 0;
 let p2PointsScore = 0;
 
-let serviceCount = 1;
+let serviceCount = 0;
 let rallyCount = 0;
 
 let serviceIsWith = 0;
@@ -37,55 +37,47 @@ window.onload = (event) => {
     }
 };
 
+// player One actions
 btnPlayerOne.addEventListener( 'click', (evt) => {
-    // Are we serving or returning?
-    if ( serviceIsWith === 1 ) {
-        if ( rallyCount === 0 ) {
-            if ( serviceCount === 1 ) {
-                console.log('Player One: First Service...');
-                serviceCount++;
-            } else {
-                console.log('Player One: Second Service...');
-            }
-            btnPlayerOne.disabled = true;
-            btnPlayerTwo.disabled = false;    
-            btnPlayerOne.classList.remove( 'is-success' );
-            btnPlayerTwo.classList.add( 'is-success' );
-        } else {
-            returnsBall = Math.floor(Math.random() * 2) + 1;
-            if ( returnsBall === 1 ) {
-                console.log('Player One: Ball missed...');
-                console.log('Point to Player Two...');
-                rallyCount = 0;
-                p2PointsScore++;
-
-            } else {
-                console.log('Player One: Returns ball...[I am currently server]');
-                rallyCount++;
-                btnPlayerOne.disabled = true;
-                btnPlayerTwo.disabled = false;    
-                btnPlayerOne.classList.remove( 'is-success' );
-                btnPlayerTwo.classList.add( 'is-success' );
-            }
-        }
-    } else {
-        console.log('Player One: Returns ball...[Im not server]');
-        rallyCount++; 
-        btnPlayerOne.disabled = true;
-        btnPlayerTwo.disabled = false;    
-        btnPlayerOne.classList.remove( 'is-success' );
-        btnPlayerTwo.classList.add( 'is-success' );       
-    }
+    // Lets hit the ball
+    hitsBall( 1 );
 })
-   
 
 // player Two actions
-
 btnPlayerTwo.addEventListener( 'click', (evt) => {
-    rallyCount++;
-    console.log('Player Two: Returns ball...')
-    btnPlayerTwo.disabled = true;
-    btnPlayerOne.disabled = false;
-    btnPlayerTwo.classList.remove( 'is-success' );
-    btnPlayerOne.classList.add( 'is-success' );
+    // Lets hit the ball
+    hitsBall( 2 );
 })
+
+function hitsBall ( player ) {
+// Determine if player is serving or returning
+// If serving then return directly TRUE
+// Otherwise decide if a successful hit or not
+    swapPlayer ( player );
+    if ( serviceIsWith === player ) {
+        console.log(`[${serviceCount}] Player ${player} serves....`);
+        return true;
+    } else {
+        if ( (Math.floor(Math.random() * 2) + 1) === 1 ) {
+            console.log(`Player ${player} fails to return the ball....`);
+            return false;
+        } else {
+            console.log(`Player ${player} returns the ball successfully....`);
+            return true;
+        }
+    }
+}
+
+function swapPlayer ( player) {
+    if ( player === 1 ) {
+        btnPlayerOne.disabled = true;
+        btnPlayerOne.classList.remove( 'is-success' );
+        btnPlayerTwo.disabled = false;
+        btnPlayerTwo.classList.add( 'is-success' );
+    } else {
+        btnPlayerTwo.disabled = true;
+        btnPlayerTwo.classList.remove( 'is-success' );
+        btnPlayerOne.disabled = false;
+        btnPlayerOne.classList.add( 'is-success' );
+    }
+}
