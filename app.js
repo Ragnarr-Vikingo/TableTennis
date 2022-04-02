@@ -79,7 +79,7 @@ btnPlayerOne.addEventListener( 'click', (evt) => {
 })
    
 
-
+// player Two actions
 
 btnPlayerTwo.addEventListener( 'click', (evt) => {
     rallyCount++;
